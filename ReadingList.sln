@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingList.API", "ReadingList.API\ReadingList.API.csproj", "{077BB7E2-4383-41FB-A794-ADD7D1944372}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingList.DAL", "ReadingList.DAL\ReadingList.DAL.csproj", "{5000950B-84C9-4AB6-9EC0-027665E116E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{077BB7E2-4383-41FB-A794-ADD7D1944372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077BB7E2-4383-41FB-A794-ADD7D1944372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077BB7E2-4383-41FB-A794-ADD7D1944372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077BB7E2-4383-41FB-A794-ADD7D1944372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5000950B-84C9-4AB6-9EC0-027665E116E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5000950B-84C9-4AB6-9EC0-027665E116E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5000950B-84C9-4AB6-9EC0-027665E116E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5000950B-84C9-4AB6-9EC0-027665E116E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5FA3EBE5-37F8-409D-973D-DF7F1E854423}
+	EndGlobalSection
+EndGlobal
