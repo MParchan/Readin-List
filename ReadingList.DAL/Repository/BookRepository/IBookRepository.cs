@@ -13,5 +13,9 @@ namespace ReadingList.DAL.Repository.BookRepository
         public IEnumerable<Book> GetAll();
         public void Add(Book book);
         public void Remove(Book book);
+        public void Update(Book book);
+        public IEnumerable<Book> GetAllToRead();
+        public IEnumerable<Book> GetAllAlreadyRead();
+        public bool Exists(int id);
     }
 }

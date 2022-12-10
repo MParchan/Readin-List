@@ -1,4 +1,5 @@
-﻿using ReadingList.DAL.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ReadingList.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,23 @@ namespace ReadingList.DAL.Repository.BookRepository
         {
             _context.Books.Remove(book);
             _context.SaveChanges();
+        }
+        public void Update(Book book)
+        {
+            _context.Entry(book).State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+        public IEnumerable<Book> GetAllToRead()
+        {
+            return _context.Books.Where(b => b.ToRead == true).ToList();
+        }
+        public IEnumerable<Book> GetAllAlreadyRead()
+        {
+            return _context.Books.Where(b => b.AlreadyRead == true).ToList();
+        }
+        public bool Exists(int id)
+        {
+            return _context.Books.Any(e => e.BookId == id);
         }
     }
 }
