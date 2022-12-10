@@ -14,6 +14,7 @@ function ReadBookList(props) {
           description={book.description}
           image={book.image == null ? null : BASE_URL + "/images/" + book.image}
           alreadyRead={book.alreadyRead}
+          priority={book.priority}
           toRead={book.toRead}
           book={book}
         />

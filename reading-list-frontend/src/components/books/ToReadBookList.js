@@ -24,6 +24,7 @@ function ToReadBookList(props) {
               }
               alreadyRead={book.alreadyRead}
               toRead={book.toRead}
+              priority={book.priority}
               book={book}
               index={index}
             />

@@ -10,7 +10,7 @@ function AllBooksPage() {
   useEffect(() => {
     setIsLoadin(true);
     createAPIEndpoint(ENDPOINTS.books)
-      .get()
+      .get("")
       .then((response) => {
         console.log(response.data);
         return response.data;

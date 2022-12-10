@@ -10,7 +10,7 @@ function ReadBooksPage() {
   useEffect(() => {
     setIsLoadin(true);
     createAPIEndpoint(ENDPOINTS.books)
-      .get()
+      .get("AlreadyRead")
       .then((response) => {
         console.log(response.data);
         return response.data;
@@ -23,9 +23,6 @@ function ReadBooksPage() {
             ...data[key],
           };
           books.push(book);
-          books = books.filter((book) => {
-            return book.alreadyRead === true;
-          });
         }
         setIsLoadin(false);
         setLoadedBooks(books);

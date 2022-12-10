@@ -9,7 +9,7 @@ export const ENDPOINTS = {
 export const createAPIEndpoint = (endpoint) => {
   let url = BASE_URL + "/api/" + endpoint + "/";
   return {
-    get: () => axios.get(url),
+    get: (type) => axios.get(url + type),
     getById: (id) => axios.get(url + id),
     post: (newRecord) => axios.post(url, newRecord),
     put: (id, updatedRecord) => axios.put(url + id, updatedRecord),

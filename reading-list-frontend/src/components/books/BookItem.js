@@ -6,7 +6,7 @@ import { createAPIEndpoint, ENDPOINTS } from "../../api";
 
 function BookItem(props) {
   const [read, setRead] = useState(props.alreadyRead);
-  const [toRead, setToRead] = useState(props.ToRead);
+  const [toRead, setToRead] = useState(props.toRead);
 
   function toggleAlredyReadBooksHandler() {
     props.book.alreadyRead = props.book.alreadyRead ? false : true;
@@ -16,8 +16,22 @@ function BookItem(props) {
 
   function toggleToReadBooksHandler() {
     props.book.toRead = props.book.toRead ? false : true;
-    createAPIEndpoint(ENDPOINTS.books).put(props.id, props.book);
     setToRead(props.book.toRead);
+    if(props.book.toRead === false){
+    props.book.priority = 0;
+    createAPIEndpoint(ENDPOINTS.books).put(props.id, props.book);
+    } else {
+      createAPIEndpoint(ENDPOINTS.books)
+      .get("ToRead")
+      .then((response) => {
+        return response.data;
+      })
+      .then((data) => {
+        props.book.priority = data.length + 1;
+        createAPIEndpoint(ENDPOINTS.books).put(props.id, props.book);
+      });
+    }
+    
   }
 
   return (

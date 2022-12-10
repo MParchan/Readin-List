@@ -11,9 +11,8 @@ function ToReadBooksPage() {
   useEffect(() => {
     setIsLoadin(true);
     createAPIEndpoint(ENDPOINTS.books)
-      .get()
+      .get("ToRead")
       .then((response) => {
-        console.log(response.data);
         return response.data;
       })
       .then((data) => {
@@ -24,12 +23,11 @@ function ToReadBooksPage() {
             ...data[key],
           };
           books.push(book);
-          books = books.filter((book) => {
-            return book.toRead === true;
-          });
         }
+        const sortBooks = [...books].sort((a, b) => a.priority - b.priority);
+        console.log(sortBooks);
         setIsLoadin(false);
-        setLoadedBooks(books);
+        setLoadedBooks(sortBooks);
       });
   }, []);
 
@@ -44,7 +42,7 @@ function ToReadBooksPage() {
   return (
     <DragDropContext
       onDragEnd={(result) => {
-        const { destination, source, draggableId } = result;
+        const { destination, source } = result;
         if (!destination) {
           return;
         }
@@ -54,13 +52,28 @@ function ToReadBooksPage() {
         ) {
           return;
         }
-
+        setIsLoadin(true);
         const newBookList = Array.from(loadedBooks);
-        const book = loadedBooks[draggableId];
         newBookList.splice(source.index, 1);
-        newBookList.splice(destination.index, 0, book);
-        console.log(newBookList);
-        setLoadedBooks(newBookList);
+        newBookList.splice(destination.index, 0, {
+          id: 0,
+          bookId: Number(loadedBooks[source.index].bookId),
+          author: loadedBooks[source.index].author,
+          image: loadedBooks[source.index].image,
+          title: loadedBooks[source.index].title,
+          description: loadedBooks[source.index].description,
+          toRead: loadedBooks[source.index].toRead,
+          alreadyRead:loadedBooks[source.index].alreadyRead
+        });
+        for (let i = 0; i < loadedBooks.length; i++) {
+          newBookList[i].id = String(i);
+          newBookList[i].priority = i + 1 ;
+          createAPIEndpoint(ENDPOINTS.books).put(newBookList[i].bookId, newBookList[i]);
+        };
+        const sortBooks = [...newBookList].sort((a, b) => a.priority - b.priority);
+        console.log(sortBooks);
+        setIsLoadin(false);
+        setLoadedBooks(sortBooks);
       }}
     >
       <section>

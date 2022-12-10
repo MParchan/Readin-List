@@ -9,6 +9,7 @@ function ToReadBookItem(props) {
   const [visible, setVisible] = useState(true);
   function RemoveToReadBookHandler() {
     props.book.toRead = false;
+    props.book.priority = 0;
     createAPIEndpoint(ENDPOINTS.books).put(props.id, props.book);
     setVisible((prev) => !prev);
   }
