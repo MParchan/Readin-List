@@ -20,6 +20,14 @@ namespace ReadingList.API.Services
         {
             return _bookRepository.GetAll().ToList();
         }
+        public List<Book> GetBooksToRead()
+        {
+            return _bookRepository.GetAllToRead().ToList();
+        }
+        public List<Book> GetBooksAlreadyRead()
+        {
+            return _bookRepository.GetAllAlreadyRead().ToList();
+        }
         public void AddBook(Book book)
         {
             _bookRepository.Add(book);
@@ -27,6 +35,14 @@ namespace ReadingList.API.Services
         public void RemoveBook(Book book)
         {
             _bookRepository.Remove(book);
+        }
+        public void UpdateBook(Book book)
+        {
+            _bookRepository.Update(book);
+        }
+        public bool BookExists(int id)
+        {
+            return _bookRepository.Exists(id);
         }
     }
 }
