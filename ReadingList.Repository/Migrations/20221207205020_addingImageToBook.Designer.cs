@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ReadingList.DAL.Models;
+using ReadingList.Repository.Entities;
 
 #nullable disable
 
-namespace ReadingList.DAL.Migrations
+namespace ReadingList.Repository.Migrations
 {
     [DbContext(typeof(ReadingListDbContext))]
     [Migration("20221207205020_addingImageToBook")]

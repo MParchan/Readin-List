@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
-namespace ReadingList.DAL.Models
+namespace ReadingList.Repository.Entities
 {
     public class Book
     {

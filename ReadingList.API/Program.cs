@@ -1,16 +1,17 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Expressions;
-using ReadingList.API.Services;
-using ReadingList.DAL.Data;
-using ReadingList.DAL.Models;
-using ReadingList.DAL.Repository.BookRepository;
-using static System.Net.Mime.MediaTypeNames;
+using ReadingList.Service.Services;
+using ReadingList.Repository.Data;
+using ReadingList.Repository.Entities;
+using ReadingList.Repository.Repository.BookRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ReadingListDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ReadingListConnection")));
+
 
 // Add services to the container.
 
@@ -19,9 +20,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IBookRepository, BookRepository>();
 
+builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IReadingListService, ReadingListService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -32,7 +34,7 @@ app.UseCors(options => options.WithOrigins("http://localhost:3000")
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
-        Path.Combine(Directory.GetParent(Environment.CurrentDirectory) + "/ReadingList.DAL/Data/Images")),
+        Path.Combine(Directory.GetParent(Environment.CurrentDirectory) + "/ReadingList.Repository/Data/Images")),
         RequestPath="/Images"
 });
 

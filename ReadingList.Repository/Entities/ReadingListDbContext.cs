@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace ReadingList.DAL.Models
+namespace ReadingList.Repository.Entities
 {
     public class ReadingListDbContext : DbContext
     {
@@ -10,5 +10,7 @@ namespace ReadingList.DAL.Models
         }
 
         public DbSet<Book> Books { get; set; }
+
+        
     }
 }

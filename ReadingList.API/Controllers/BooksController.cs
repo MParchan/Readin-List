@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ReadingList.API.Services;
-using ReadingList.DAL.Models;
+using ReadingList.Service.Services;
+using ReadingList.Service.DTOs;
+using ReadingList.API.ViewModels;
+using AutoMapper;
 
 namespace ReadingList.API.Controllers
 {
@@ -10,33 +12,38 @@ namespace ReadingList.API.Controllers
     public class BooksController : ControllerBase
     {
         private readonly IReadingListService _readingListService;
+        private readonly IMapper _mapper;
 
-        public BooksController(IReadingListService readingListService)
+        public BooksController(IReadingListService readingListService, IMapper mapper)
         {
             _readingListService = readingListService;
+            _mapper = mapper;
         }
 
         // GET: api/Books
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> GetBooks()
+        public ActionResult<IEnumerable<BookViewModel>> GetBooks()
         {
-            return _readingListService.GetBooks();
+            var results = _readingListService.GetBooks();
+            return _mapper.Map<List<BookViewModel>>(results);
         }
 
         [HttpGet("AlreadyRead")]
-        public ActionResult<IEnumerable<Book>> GetBooksAlreadyRead()
+        public ActionResult<IEnumerable<BookViewModel>> GetBooksAlreadyRead()
         {
-            return _readingListService.GetBooksAlreadyRead();
+            var results = _readingListService.GetBooksAlreadyRead();
+            return _mapper.Map<List<BookViewModel>>(results);
         }
         [HttpGet("ToRead")]
-        public ActionResult<IEnumerable<Book>> GetBooksToRead()
+        public ActionResult<IEnumerable<BookViewModel>> GetBooksToRead()
         {
-            return _readingListService.GetBooksToRead();
+            var results = _readingListService.GetBooksToRead();
+            return _mapper.Map<List<BookViewModel>>(results);
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public ActionResult<Book> GetBook(int id)
+        public ActionResult<BookViewModel> GetBook(int id)
         {
             var book = _readingListService.GetBookById(id);
 
@@ -45,13 +52,13 @@ namespace ReadingList.API.Controllers
                 return NotFound();
             }
 
-            return book;
+            return _mapper.Map<BookViewModel>(book);
         }
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public IActionResult PutBook(int id, Book book)
+        public IActionResult PutBook(int id, BookViewModel book)
         {
             if (id != book.BookId)
             {
@@ -59,7 +66,7 @@ namespace ReadingList.API.Controllers
             }
             try
             {
-                _readingListService.UpdateBook(book);
+                _readingListService.UpdateBook(_mapper.Map<BookDto>(book));
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -79,9 +86,9 @@ namespace ReadingList.API.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Book> PostBook(Book book)
+        public ActionResult<BookViewModel> PostBook(BookViewModel book)
         {
-            _readingListService.AddBook(book);
+            _readingListService.AddBook(_mapper.Map<BookDto>(book));
 
             return CreatedAtAction("GetBook", new { id = book.BookId }, book);
         }
@@ -96,7 +103,7 @@ namespace ReadingList.API.Controllers
                 return NotFound();
             }
 
-            _readingListService.RemoveBook(book);
+            _readingListService.RemoveBook(id);
 
             return NoContent();
         }

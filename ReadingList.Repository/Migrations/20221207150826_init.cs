@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ReadingList.DAL.Migrations
+namespace ReadingList.Repository.Migrations
 {
     public partial class init : Migration
     {
