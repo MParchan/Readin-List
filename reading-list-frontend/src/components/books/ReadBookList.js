@@ -12,7 +12,11 @@ function ReadBookList(props) {
           title={book.title}
           author={book.author}
           description={book.description}
-          image={book.image == null ? null : BASE_URL + "/images/" + book.image}
+          imageName={
+            book.imageName == null
+              ? null
+              : BASE_URL + "/images/" + book.imageName
+          }
           alreadyRead={book.alreadyRead}
           priority={book.priority}
           toRead={book.toRead}

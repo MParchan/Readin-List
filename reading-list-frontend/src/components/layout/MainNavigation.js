@@ -9,16 +9,16 @@ function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link to="/">All Books</Link>
+            <Link to="/">Booklist</Link>
           </li>
           <li>
-            <Link to="/new-book">Add New Book</Link>
+            <Link to="/new-book">Add book</Link>
           </li>
           <li>
-            <Link to="/read-books">Read Books</Link>
+            <Link to="/read-books">Books read</Link>
           </li>
           <li>
-            <Link to="/to-read-books">To Read Books</Link>
+            <Link to="/to-read-books">Books to read</Link>
           </li>
         </ul>
       </nav>

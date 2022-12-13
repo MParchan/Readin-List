@@ -1,13 +1,6 @@
-import classes from "./LoadingSpinner.module.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function LoadingSpinner() {
-  return (
-    <div className={classes.lds_ring}>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  );
+  return <ClipLoader color="#cccccc" loading size={40} speedMultiplier={1} />;
 }
 export default LoadingSpinner;

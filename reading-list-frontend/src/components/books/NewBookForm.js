@@ -4,6 +4,7 @@ import Card from "../ui/Card";
 import classes from "./NewBookForm.module.css";
 
 function NewBookForm(props) {
+  //const [image, setImage] = useState();
   const titleInputRef = useRef();
   const authorInputRef = useRef();
   const descriptionInputRef = useRef();
@@ -21,15 +22,19 @@ function NewBookForm(props) {
       alredyRead: false,
       toRead: false,
       priority: 0,
+      imageFile: null,
     };
     props.onAddBook(bookData);
   }
+  /*function handleChange(event) {
+    setImage(URL.createObjectURL(event.target.files[0]));
+  }*/
 
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor="title">Book Title</label>
+          <label htmlFor="title">Book title</label>
           <input type="text" required={true} id="tittle" ref={titleInputRef} />
         </div>
         <div className={classes.control}>
@@ -45,8 +50,19 @@ function NewBookForm(props) {
             ref={descriptionInputRef}
           ></textarea>
         </div>
+        {/*<div className={classes.control}>
+          <label htmlFor="imageFile">Image</label>
+          <input
+            id="imageFile"
+            type="file"
+            accept="image/*"
+            required={true}
+            onChange={handleChange}
+          />
+          {image == null ? null : <img src={image} alt="" />}
+  </div>*/}
         <div className={classes.actions}>
-          <button>Add Book</button>
+          <button>Add book</button>
         </div>
       </form>
     </Card>

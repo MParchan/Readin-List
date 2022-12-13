@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import ReadBookList from "../components/books/ReadBookList";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
+import classes from "./Pages.module.css";
 
 function ReadBooksPage() {
   const [isLoadnig, setIsLoadin] = useState(true);
@@ -31,15 +33,15 @@ function ReadBooksPage() {
 
   if (isLoadnig) {
     return (
-      <section>
-        <p>Loading...</p>
+      <section className={classes.textCenter}>
+        <LoadingSpinner />
       </section>
     );
   }
 
   return (
     <section>
-      <h1>Read Books Page</h1>
+      <h1 className={classes.textCenter}>Booklist read</h1>
       <ReadBookList books={loadedBooks} />
     </section>
   );

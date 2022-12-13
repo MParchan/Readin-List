@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadingList.Repository.Entities;
 
@@ -10,9 +11,10 @@ using ReadingList.Repository.Entities;
 namespace ReadingList.Repository.Migrations
 {
     [DbContext(typeof(ReadingListDbContext))]
-    partial class ReadingListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221212224620_addImageFile")]
+    partial class addImageFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

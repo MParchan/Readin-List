@@ -28,7 +28,7 @@ namespace ReadingList.Repository.Data
                     AlreadyRead=false,
                     ToRead=false,
                     Priority=0,
-                    Image="Harry_Potter_and_the_Philosopher's_Stone.png"
+                    ImageName="Harry_Potter_and_the_Philosopher's_Stone.png"
                 },
                 new Book{
                     Title="The Fellowship of the Ring",
@@ -37,7 +37,7 @@ namespace ReadingList.Repository.Data
                     AlreadyRead=false,
                     ToRead=false,
                     Priority=0,
-                    Image="The_Fellowship_of_the_Ring.png"
+                    ImageName="The_Fellowship_of_the_Ring.png"
                 },
                 new Book{
                     Title="The Da Vinci Code",
@@ -46,7 +46,7 @@ namespace ReadingList.Repository.Data
                     AlreadyRead=false,
                     ToRead=false,
                     Priority=0,
-                    Image="The_Da_Vinci_Code.png"
+                    ImageName="The_Da_Vinci_Code.png"
                 },
                 new Book{
                     Title="The Godfather",
@@ -55,7 +55,7 @@ namespace ReadingList.Repository.Data
                     AlreadyRead=false,
                     ToRead=false,
                     Priority=0,
-                    Image="The_Godfather.png"
+                    ImageName="The_Godfather.png"
                 },
                 new Book{
                     Title="Fifty Shades of Grey",
@@ -64,7 +64,7 @@ namespace ReadingList.Repository.Data
                     AlreadyRead=false,
                     ToRead=false,
                     Priority=0,
-                    Image="Fifty_Shades_of_Grey.png"
+                    ImageName="Fifty_Shades_of_Grey.png"
                 }
             };
             foreach (Book b in books)

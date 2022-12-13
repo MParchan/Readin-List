@@ -3,6 +3,8 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import ToReadBookList from "../components/books/ToReadBookList";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
+import classes from "./Pages.module.css";
 
 function ToReadBooksPage() {
   const [isLoadnig, setIsLoadin] = useState(true);
@@ -33,8 +35,8 @@ function ToReadBooksPage() {
 
   if (isLoadnig) {
     return (
-      <section>
-        <p>Loading...</p>
+      <section className={classes.textCenter}>
+        <LoadingSpinner />
       </section>
     );
   }
@@ -59,25 +61,33 @@ function ToReadBooksPage() {
           id: 0,
           bookId: Number(loadedBooks[source.index].bookId),
           author: loadedBooks[source.index].author,
-          image: loadedBooks[source.index].image,
+          imageName: loadedBooks[source.index].imageName,
           title: loadedBooks[source.index].title,
           description: loadedBooks[source.index].description,
           toRead: loadedBooks[source.index].toRead,
-          alreadyRead:loadedBooks[source.index].alreadyRead
+          alreadyRead: loadedBooks[source.index].alreadyRead,
         });
         for (let i = 0; i < loadedBooks.length; i++) {
           newBookList[i].id = String(i);
-          newBookList[i].priority = i + 1 ;
-          createAPIEndpoint(ENDPOINTS.books).put(newBookList[i].bookId, newBookList[i]);
-        };
-        const sortBooks = [...newBookList].sort((a, b) => a.priority - b.priority);
+          newBookList[i].priority = i + 1;
+          createAPIEndpoint(ENDPOINTS.books).put(
+            newBookList[i].bookId,
+            newBookList[i]
+          );
+        }
+        const sortBooks = [...newBookList].sort(
+          (a, b) => a.priority - b.priority
+        );
         console.log(sortBooks);
         setIsLoadin(false);
         setLoadedBooks(sortBooks);
       }}
     >
       <section>
-        <h1>Read Books Page</h1>
+        <h1 className={classes.textCenter}>Booklist to read</h1>
+        <p className={classes.textCenter}>
+          You can reorder the list by dragging the books
+        </p>
         <ToReadBookList books={loadedBooks} />
       </section>
     </DragDropContext>

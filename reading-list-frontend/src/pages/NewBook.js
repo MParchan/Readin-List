@@ -2,19 +2,23 @@ import { useNavigate } from "react-router-dom";
 
 import { createAPIEndpoint, ENDPOINTS } from "../api";
 import NewBookForm from "../components/books/NewBookForm";
+import classes from "./Pages.module.css";
 
 function NewBook() {
   const navigate = useNavigate();
-  function addBookHandler(bookData) {
+  function addBookHandler(formData) {
     createAPIEndpoint(ENDPOINTS.books)
-      .post(bookData)
+      .post(formData)
       .then(() => {
         navigate("/");
+      })
+      .catch((error) => {
+        console.error(error.response.data);
       });
   }
   return (
     <section>
-      <h1>Add New Book</h1>
+      <h1 className={classes.textCenter}>Add new book</h1>
       <NewBookForm onAddBook={addBookHandler} />
     </section>
   );

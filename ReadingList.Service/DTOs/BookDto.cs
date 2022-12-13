@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReadingList.Service.DTOs
 {
@@ -11,6 +13,8 @@ namespace ReadingList.Service.DTOs
         public bool AlreadyRead { get; set; }
         public bool ToRead { get; set; }
         public int Priority { get; set; }
-        public string Image { get; set; }
+        public string ImageName { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
     }
 }

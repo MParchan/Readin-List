@@ -1,4 +1,6 @@
-﻿namespace ReadingList.API.ViewModels
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ReadingList.API.ViewModels
 {
     public class BookViewModel
     {
@@ -9,6 +11,8 @@
         public bool AlreadyRead { get; set; }
         public bool ToRead { get; set; }
         public int Priority { get; set; }
-        public string Image { get; set; }
+        public string ImageName { get; set; }
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
     }
 }

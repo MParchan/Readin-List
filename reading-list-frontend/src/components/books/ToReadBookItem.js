@@ -11,7 +11,7 @@ function ToReadBookItem(props) {
     props.book.toRead = false;
     props.book.priority = 0;
     createAPIEndpoint(ENDPOINTS.books).put(props.id, props.book);
-    setVisible((prev) => !prev);
+    setVisible(false);
   }
 
   return (
@@ -25,23 +25,25 @@ function ToReadBookItem(props) {
         >
           {visible && (
             <Card>
-              {/*props.image == null ? null : (
-                <div className={classes.image}>
-                  <img src={props.image} alt={props.title} />
+              <div className={classes.card}>
+                {props.imageName == null ? null : (
+                  <div className={classes.image}>
+                    <img src={props.imageName} alt={props.title} />
+                  </div>
+                )}
+                <div className={classes.content}>
+                  <h3>{props.title}</h3>
+                  <p>{props.author}</p>
                 </div>
-              )*/}
-              <div className={classes.content}>
-                <h3>
-                  {props.title} {props.id}
-                </h3>
-                <p>{props.author}</p>
-                <p>{props.description}</p>
-              </div>
-              <div
-                className={classes.actions}
-                onClick={RemoveToReadBookHandler}
-              >
-                <button>Remove from read books</button>
+                <div className={classes.description}>
+                  <p>{props.description}</p>
+                </div>
+                <div
+                  className={classes.actions}
+                  onClick={RemoveToReadBookHandler}
+                >
+                  <button>Remove from books to read</button>
+                </div>
               </div>
             </Card>
           )}

@@ -2,45 +2,105 @@
   margin: 1rem 0;
 }
 
-.image {
+.card {
+  border: #404040;
   width: 100%;
-  height: 20rem;
+  padding: 1rem;
+}
+
+.image {
+  width: 18%;
+  max-height: 12rem;
   overflow: hidden;
-  border-top-right-radius: 6px;
-  border-top-left-radius: 6px;
+  float: left;
 }
 
 .image img {
   width: 100%;
   object-fit: cover;
+  border-radius: 6px;
 }
 
 .content {
+  float: left;
+  width: 82%;
   text-align: center;
-  padding: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .content h3 {
-  font-size: 1.25rem;
+  font-size: 1.8rem;
   color: #2c292b;
 }
 
+.content p {
+  font-style: italic;
+}
+
+.description {
+  clear: both;
+  width: 100%;
+  padding: 1rem;
+  padding-top: 0.5rem;
+}
+
 .actions {
-  padding: 1.5rem;
+  border-radius: 6px;
   text-align: center;
+  display: none;
 }
 
 .actions button {
   font: inherit;
   cursor: pointer;
-  color: #77002e;
-  border: 1px solid #77002e;
-  background-color: transparent;
-  padding: 0.5rem 1.5rem;
+  color: #ffffff;
+  border: 1px solid #aaaaaa;
+  background-color: #404040;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
 }
 
 .actions button:hover,
 .actions button:active {
-  background-color: #ffe2ed;
+  background-color: #cccccc;
+  color: 404040;
+}
+.card:hover .actions {
+  display: block;
+}
+
+.card:hover .close {
+  display: block;
+}
+
+.close {
+  position: relative;
+  left: 97%;
+  top: 0px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  display: none;
+  width: 5%;
+  float: left;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  content: " ";
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
 }

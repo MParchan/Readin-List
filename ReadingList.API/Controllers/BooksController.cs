@@ -13,11 +13,13 @@ namespace ReadingList.API.Controllers
     {
         private readonly IReadingListService _readingListService;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BooksController(IReadingListService readingListService, IMapper mapper)
+        public BooksController(IReadingListService readingListService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _readingListService = readingListService;
             _mapper = mapper;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: api/Books
@@ -56,7 +58,6 @@ namespace ReadingList.API.Controllers
         }
 
         // PUT: api/Books/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public IActionResult PutBook(int id, BookViewModel book)
         {
@@ -84,10 +85,13 @@ namespace ReadingList.API.Controllers
         }
 
         // POST: api/Books
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public ActionResult<BookViewModel> PostBook(BookViewModel book)
         {
+            if (book.ImageFile != null)
+            {
+                book.ImageName = SaveImage(book.ImageFile);
+            }
             _readingListService.AddBook(_mapper.Map<BookDto>(book));
 
             return CreatedAtAction("GetBook", new { id = book.BookId }, book);
@@ -111,6 +115,20 @@ namespace ReadingList.API.Controllers
         private bool BookExists(int id)
         {
             return _readingListService.BookExists(id);
+        }
+
+        [NonAction]
+        public string SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(" ", "_");
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var controllersPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory)+"");
+            var imagePath = Path.Combine(Directory.GetParent(controllersPath) + "/ReadingList.Repository/Data/Images", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                imageFile.CopyTo(fileStream);
+            }
+            return imageName;
         }
     }
 }
