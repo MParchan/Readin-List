@@ -29,12 +29,29 @@
   padding-right: 1rem;
 }
 
+.contentNoImg {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .content h3 {
   font-size: 1.8rem;
   color: #2c292b;
 }
 
 .content p {
+  font-style: italic;
+}
+
+.contentNoImg h3 {
+  font-size: 1.8rem;
+  color: #2c292b;
+}
+
+.contentNoImg p {
   font-style: italic;
 }
 

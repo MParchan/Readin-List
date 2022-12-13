@@ -58,11 +58,19 @@ function BookItem(props) {
                 <img src={props.imageName} alt={props.title} />
               </div>
             )}
-            <div className={classes.content}>
-              <div className={classes.close} onClick={deleteHandler}></div>
-              <h3>{props.title}</h3>
-              <p>{props.author}</p>
-            </div>
+            {props.imageName == null ? (
+              <div className={classes.contentNoImg}>
+                <div className={classes.close} onClick={deleteHandler}></div>
+                <h3>{props.title}</h3>
+                <p>{props.author}</p>
+              </div>
+            ) : (
+              <div className={classes.content}>
+                <div className={classes.close} onClick={deleteHandler}></div>
+                <h3>{props.title}</h3>
+                <p>{props.author}</p>
+              </div>
+            )}
             <div className={classes.description}>
               <p>{props.description}</p>
             </div>
