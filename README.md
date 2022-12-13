@@ -3,7 +3,7 @@
 * Change database ConnectingString in [appsettings.json](ReadingList.API/appsettings.json)
 ````json
 "ConnectionStrings": {
-    "HotDescConnection": "Server=(localdb)\\mssqllocaldb;Database=HotDescDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "ReadingListConnection": "Server=(localdb)\\mssqllocaldb;Database=ReadingListDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 ````
 * In Package Manager Console run `update-database` command
